@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xml의 규칙을 담고있는 코드 (반드시 필요) -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <!-- mapper와 xml을 연결해주는 것: <mapper> -->
+<mapper namespace="com.quiz.lesson03.mapper.EstateMapper">
+	<select id="selectEstateById" parameterType="int" resultType="com.quiz.lesson03.domain.Estate">
+		SELECT
+				 
+ 			`id`
+ 			, `realtorId`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 			, `rentPrice`
+ 			, `createdAt`
+ 			, `updatedAt`
+		FROM
+				`real_estate`
+		WHERE 
+				`id` = #{id}				
+	
+	</select>
+
+
+</mapper>
