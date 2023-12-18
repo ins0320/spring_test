@@ -23,6 +23,46 @@
 				`id` = #{id}				
 	
 	</select>
+	
+	<select id="selectEstateByRentPrice" parameterType="int" resultType="com.quiz.lesson03.domain.Estate">
+		SELECT 
+ 			`id`
+ 			, `realtorId`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 			, `rentPrice`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`real_estate`
+		WHERE 
+		<![CDATA[
+			`rentPrice`  <  #{rentPrice}
+		]]>
+		
+	</select>
 
+	<select id="selectEstateByAareaPrice" parameterType="map" resultType="com.quiz.lesson03.domain.Estate">
+		SELECT
+			`id`
+ 			, `realtorId`
+ 			, `address`
+ 			, `area`
+ 			, `type`
+ 			, `price`
+ 			, `rentPrice`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`real_estate`
+ 		WHERE 
+		<![CDATA[
+				`type` = '매매'
+			AND `area` >= #{area}
+			AND `price` <= #{price}
+		]]>	
+	</select>
 
 </mapper>
