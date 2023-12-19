@@ -26,4 +26,23 @@ public class EstateBO {
 	public List<Estate> getEstateByAreaPrice(int area, int price){
 		return estateMapper.selectEstateByAareaPrice(area, price);
 	}
+	
+	// insert한 행의 개수
+	// input: Estate output: 리턴한 행의 개수(int)
+	public int addEstate(Estate estate) {
+		return estateMapper.insertEstate(estate);
+	}
+	
+	// input: addEstateByfiled("샹떼빌리버 오피스텔 814호", 45, "월세", 1000000, 120);
+	// output: return 한 행의 개수
+	public int addEstateAsfiled(
+			int realtorId
+			,String address 
+			, int area
+			, String type
+			, int price
+			,Integer rentPrice
+			) {
+		return estateMapper.inesrtEstateAsfiled(realtorId,address, area, type, price, rentPrice);
+	}
 }
