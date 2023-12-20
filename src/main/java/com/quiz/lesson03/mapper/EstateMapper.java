@@ -36,4 +36,8 @@ public interface EstateMapper {
 				, @Param("type") String type
 				, @Param("price") int price);
 	
+	// deleteEstateById
+	// input: id     output: return 성공한 행의 갸수
+	public int deleteEstateById(int id);
+	
 }

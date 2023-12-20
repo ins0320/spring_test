@@ -38,8 +38,7 @@ public class Lesson03Quiz02RestController {
 	public String quiz02_03(
 			@RequestParam("id")int id
 			, @RequestParam("type") String type
-			,@RequestParam("price") int price
-			) {
+			,@RequestParam("price") int price) {
 		int rowCount = estateBO.updateEstateById(id, type, price);
 		return "수정 성공" + rowCount;
 	}

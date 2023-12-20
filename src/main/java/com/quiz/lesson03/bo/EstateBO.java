@@ -46,9 +46,17 @@ public class EstateBO {
 		return estateMapper.inesrtEstateAsfiled(realtorId,address, area, type, price, rentPrice);
 	}
 	
-	//updateEstateBO
-	//input: estate output:return 한 행의 개수
+	// updateEstateById
+	// input: id, type, price         output: return 성공한 행의 개수
 	public int updateEstateById(int id, String type, int price) {
 		return estateMapper.updateEstateById(id, type, price);
 	}
+	
+	
+	// deleteEstateById
+	// input: id     output: return 성공한 행의 갸수
+	public int deleteEstateById(int id) {
+		return estateMapper.deleteEstateById(id);
+	}
+	
 }
