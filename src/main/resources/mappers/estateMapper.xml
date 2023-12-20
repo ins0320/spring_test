@@ -117,4 +117,13 @@
 		)		
 	</insert>
 
+	<update id="updateEstateById" parameterType="map">
+		UPDATE
+			`real_estate`
+		SET
+			`id` = #{id}	
+			, `type` = #{type}
+			, `price` =  #{price}
+			, `updatedAt` = NOW()
+	</update>
 </mapper>

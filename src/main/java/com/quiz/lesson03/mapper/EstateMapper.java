@@ -31,4 +31,9 @@ public interface EstateMapper {
 			, @Param("price") int price
 			, @Param("rentPrice") Integer rentPrice);
 	
+	public int updateEstateById(
+				@Param("id") int id
+				, @Param("type") String type
+				, @Param("price") int price);
+	
 }

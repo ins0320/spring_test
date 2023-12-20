@@ -45,4 +45,10 @@ public class EstateBO {
 			) {
 		return estateMapper.inesrtEstateAsfiled(realtorId,address, area, type, price, rentPrice);
 	}
+	
+	//updateEstateBO
+	//input: estate output:return 한 행의 개수
+	public int updateEstateById(int id, String type, int price) {
+		return estateMapper.updateEstateById(id, type, price);
+	}
 }

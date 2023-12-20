@@ -33,4 +33,14 @@ public class Lesson03Quiz02RestController {
 		int rowCount =  estateBO.addEstateAsfiled(realtorId,"샹떼빌리버 오피스텔 814호", 45, "월세", 1000000, 120);
 		return "입력 성공 : " + rowCount;
 	}
+	
+	@RequestMapping("/03")
+	public String quiz02_03(
+			@RequestParam("id")int id
+			, @RequestParam("type") String type
+			,@RequestParam("price") int price
+			) {
+		int rowCount = estateBO.updateEstateById(id, type, price);
+		return "수정 성공" + rowCount;
+	}
 }
