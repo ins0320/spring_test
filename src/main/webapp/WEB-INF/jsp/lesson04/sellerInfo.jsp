@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>판매자 추가</title>
+<title>${title}</title>
 <!-- bootstrap CDN link -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -13,24 +13,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container">
-		<h1>판매자 추가</h1>
-		<form method="post" action="/lesson04/quiz01/add-seller">
-			<div class="form-group">
-				<label for ="nickname">닉네임</label>
-				<input type="text" id="nickname" name="nickname" class="form-control col-5">
-			</div>
-			<div class="form-group">
-				<label for ="profileImageUrl">프로필url</label>
-				<input type="text" id="profileImageUrl" name="profileImageUrl" class="form-control col-8">
-			</div>
-			<div class="form-group">
-				<label for ="temperature">온도</label>
-				<input type="text" id="temperature" name="temperature" class="form-control col-5">
-			</div>	
-			<input type="submit" value="추가" class="btn btn-info">	
-		</form>
+	<div class="container">
+		<h3>${title}</h3>
+		<image src="${result.profileImageUrl}" width="200">
+		<h3>${result.nickname}</h3> <br>
+		<h2 class="text-warning">${result.temperature}</h2>
 	</div>
-	
 </body>
 </html>
