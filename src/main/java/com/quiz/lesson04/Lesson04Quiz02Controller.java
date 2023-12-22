@@ -31,11 +31,11 @@ public class Lesson04Quiz02Controller {
 		realtorBO.addRealtor(realtor);
 		
 		// 추가한 데이터의 id를 가져옴
-		Realtor result = realtorBO.getRealtorById(realtor.getId());
+		Realtor lastRealtor = realtorBO.getRealtorById(realtor.getId());
 		
 		model.addAttribute("title", "공인중개사 정보");
-		model.addAttribute("result",result);
+		model.addAttribute("result",lastRealtor);
 		
-		return "lesson04/realtorInfo";
+		return "lesson04/afterAddRealtor";
 	}
 }
