@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>멤버십</title>
+<title>회원정보리스트</title>
 <!-- bootstrap CDN link -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -16,49 +16,31 @@
 </head>
 <body>
 	<div class="container">
-		<h1>멤버십</h1>
+		<h1>회원정보리스트</h1>
 		<table class="table text-center">			
 			<thead>
 				<tr>
+					<th>No</th>
 					<th>이름</th>
 					<th>전화번호</th>
-					<th>등급</th>
-					<th>포인트</th>
+					<th>국적</th>
+					<th>이메일</th>
+					<th>자기소개</th>
 				</tr>	
 			</thead>
 			<tbody>
-				<c:forEach var="membership" items="${membershipList}">
-					<tr>		
-						<td>${membership.name}</td>
-						<td>${membership.phoneNumber}</td>
+			<c:forEach var="member" items="${memberList}" varStatus="status">
+					<tr>
+						<td>${status.count }</td>
+						<td>${member.name}</td>
+						<td>${member.phoneNumber}</td>
 						
-						<%-- 등급 폰트 색: vip->red, gold->yellow basic->black --%>
-						<td>
-						<c:choose>
-							<c:when test="${membership.grade eq 'VIP'}">
-								<span class="text-danger">${membership.grade}</span>
-							</c:when>
-							<c:when test="${membership.grade eq 'GOLD'}">
-								<span class="text-warning">${membership.grade}</span>
-							</c:when>
-							<c:otherwise>
-								${membership.grade}
-							</c:otherwise>
-						</c:choose>							
-						</td>
-						<%-- 포인트: 5000 이상이면 파란색 --%>
-						<td>
-							<c:choose>
-								<c:when test="${membership.point >= 5000}">
-									<span class="text-info">${membership.point}</span>P
-								</c:when>	
-								<c:otherwise>
-									${membership.point}
-							</c:otherwise>
-							</c:choose>
-						</td>
+						<td>${fn:split(member.nationality) }</td>
+						<td>${member.email }</td>
+						<td>${member.introduce }</td>
+						
 					</tr>
-				</c:forEach>	
+			</c:forEach>		
 			</tbody>
 		</table>
 	</div>
