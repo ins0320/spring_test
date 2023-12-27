@@ -1,0 +1,22 @@
+@charset "UTF-8";
+
+#wrap{
+	
+}
+.menu{
+	height:autopx;
+}
+aside{
+	width:150px;
+	background-color:#4aa8d8;
+}
+.aside-font{
+	color:white;
+
+}
+section{
+	width:850px;
+}
+footer{
+	height:100px;
+}
