@@ -1,8 +1,10 @@
 package com.quiz.weather_history;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,24 +17,12 @@ import com.quiz.weather_history.bo.WeatherhistoryBO;
 import com.quiz.weather_history.domain.Weather;
 
 
-@RequestMapping("/weather-history")
+@RequestMapping("/weather_history")
 @Controller
 public class weather_historyController {
 	
 	@Autowired
 	private WeatherhistoryBO weatherhistoryBO;
-	
-	// 날씨 리스트
-	@GetMapping("/weather-list-view")
-	public String weatherListView(Model model) {
-		
-		// select
-		List<Weather> weatherhistory = weatherhistoryBO.getWeatherhistory();
-		model.addAttribute("weatherhistoryList",weatherhistory );
-		
-		
-		return "weather_history/weatherList";
-	}
 	
 	// 날씨 추가 화면
 	@GetMapping("/add-weather-view")
@@ -43,7 +33,7 @@ public class weather_historyController {
 	// 날씨 추가
 	@PostMapping("/add-weather")
 	public String addWeather(
-			@RequestParam("date") String date, 
+			@RequestParam("date") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, 
 			@RequestParam("weather") String weather, 
 			@RequestParam("temperatures") double temperatures, 
 			@RequestParam("precipitation") double precipitation, 
@@ -52,6 +42,19 @@ public class weather_historyController {
 		
 		weatherhistoryBO.addWeatherHistory(date, weather, temperatures, precipitation, microDust, windSpeed);
 		
-		return "redirect:/weather_history/weatherList";
+		return "redirect:/weather_history/weather-list-view";
 	}
+	
+	// 날씨 리스트
+		@GetMapping("/weather-list-view")
+		public String weatherListView(Model model) {
+			
+			// select
+			List<Weather> weatherhistory = weatherhistoryBO.getWeatherhistory();
+			model.addAttribute("weatherhistoryList",weatherhistory );
+			
+			
+			return "weather_history/weatherList";
+		}
+		
 }

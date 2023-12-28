@@ -1,5 +1,6 @@
 package com.quiz.weather_history.bo;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class WeatherhistoryBO {
 	private WeatherhistoryMapper weatherhistoryMapper;
 	
 	public void addWeatherHistory(
-			String date, 
+			Date date, 
 			String weather, 
 			double temperatures, 
 			double precipitation, 

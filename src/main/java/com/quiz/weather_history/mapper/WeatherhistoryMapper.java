@@ -1,5 +1,6 @@
 package com.quiz.weather_history.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -11,7 +12,7 @@ import com.quiz.weather_history.domain.Weather;
 public interface WeatherhistoryMapper {
 
 	public void insertWeatherHistory(
-			@Param("date") String date, 
+			@Param("date") Date date, 
 			@Param("weather") String weather, 
 			@Param("temperatures") double temperatures, 
 			@Param("precipitation") double precipitation, 

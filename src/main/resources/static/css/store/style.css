@@ -1,0 +1,17 @@
+@charset "UTF-8";
+#wrap{
+	
+}
+header{
+	height:100px;
+	font-size: 50px;
+	color:white;
+}
+.store{
+	width: 500px;
+	height:150px;
+  	border: 2px solid #0080c0;
+ 	padding: 0.5rem;
+  	line-height: 1rem;
+  	border-radius: 0.5rem;
+}
