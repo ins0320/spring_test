@@ -14,6 +14,18 @@ public class WeatherhistoryBO {
 	@Autowired
 	private WeatherhistoryMapper weatherhistoryMapper;
 	
+	public void addWeatherHistory(
+			String date, 
+			String weather, 
+			double temperatures, 
+			double precipitation, 
+			String microDust, 
+			double windSpeed) {
+		
+		weatherhistoryMapper.insertWeatherHistory(date, weather, temperatures, precipitation, microDust, windSpeed);
+		
+	}
+	
 	public List<Weather> getWeatherhistory(){
 		return weatherhistoryMapper.selectWeatherhistory();
 	}

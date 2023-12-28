@@ -1,22 +1,31 @@
 @charset "UTF-8";
 
-#wrap{
-	
+#wrap {
+	width:1200px;
 }
-.menu{
-	height:autopx;
+nav {
+	background-color:cornflowerblue;
 }
-aside{
-	width:150px;
-	background-color:#4aa8d8;
+.contents {
+	min-height:500px;
 }
-.aside-font{
-	color:white;
-
-}
-section{
-	width:850px;
-}
-footer{
+footer {
 	height:100px;
+}
+
+.input-label {
+    width:130px;
+    text-align: right;
+    margin-right:10px;
+}
+
+.menu-font {
+    color:white;
+    font-size:17px;
+    font-weight: bold;
+}
+
+.menu-font:hover {
+    color:white;
+    border: 2px solid white;
 }

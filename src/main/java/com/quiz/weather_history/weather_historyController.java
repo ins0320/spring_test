@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quiz.weather_history.bo.WeatherhistoryBO;
@@ -39,9 +40,18 @@ public class weather_historyController {
 		return "weather_history/addWeather";
 	}
 	
-	// 날씨 후가
+	// 날씨 추가
 	@PostMapping("/add-weather")
-	public String addWeather() {		
-		return "weather_history/weatherList";
+	public String addWeather(
+			@RequestParam("date") String date, 
+			@RequestParam("weather") String weather, 
+			@RequestParam("temperatures") double temperatures, 
+			@RequestParam("precipitation") double precipitation, 
+			@RequestParam("microDust") String microDust, 
+			@RequestParam("windSpeed") double windSpeed) {	
+		
+		weatherhistoryBO.addWeatherHistory(date, weather, temperatures, precipitation, microDust, windSpeed);
+		
+		return "redirect:/weather_history/weatherList";
 	}
 }
