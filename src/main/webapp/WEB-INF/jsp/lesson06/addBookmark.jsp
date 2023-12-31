@@ -27,7 +27,7 @@
 	</div>
 	<script>
 	$(document).ready(function(){
-		$("#addBtn").on('click', function(){
+		$("#addBtn").on("click", function(){
 			let name = $("#name").val();
 			let url = $("#url").val();
 			

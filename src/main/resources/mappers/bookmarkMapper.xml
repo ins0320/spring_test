@@ -19,5 +19,12 @@
 			, now()
 		)			
 	</insert>
-
+	
+	<select id="selectBookmark" parameterType="map">
+		SELECT 
+			`name`
+			, `url`
+		FROM
+			`bookmark`	
+	</select>
 </mapper>
