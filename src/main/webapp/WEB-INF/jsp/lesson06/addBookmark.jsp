@@ -16,14 +16,16 @@
 <body>	
 	<div class="container">
 		<h1>즐겨찾기추가하기</h1>
-		<form method="post" action="/lesson06/quiz01/add-bookmark">
-			<label for="name">제목</label>
-			<input type="text" name="name" id="name" class="form-control col-5">
-			<label for="url">주소</label>
-			<input type="text" name="url" id="url" class="form-control col-5">
+			<label>제목</label>
+			<input type="text"  id="name" class="form-control col-5">
 			
-			<input type="button" value="추가" id="addBtn" class="btn-success col-5 mt-2">
-		</form>
+			<label for="url">주소</label>
+			<div class="d-flex">
+				<input type="text"  id="url" class="form-control col-5">
+				<button type="button" id="duplicateBtn" class="btn-info ml-3">중복확인</button>
+			</div>
+			<div class="text-danger mt-3" id="duplicateText">중복된 url 입니다.</div>
+			<button type="button" id="addBtn" class="btn-success col-6 mt-3">추가</button>
 	</div>
 	<script>
 	$(document).ready(function(){
@@ -32,7 +34,7 @@
 			let url = $("#url").val();
 			
 			// validation 
-			if(name.length < 1){
+			if(!name){
 				alert("제목을 입력하세요");
 				return;
 			}
@@ -41,26 +43,36 @@
 				return;
 			}
 
+			// http 또는 https => ok
+			if(url.startsWith("http://") == false
+					&& url.startsWith("https://") == false){
+				alert("주소 형식이 잘못 되었습니다.");
+				return;
+			}
 		
 		$.ajax({ // -- AJAX
+			
 			// request
 			type:"post"
-			, url:"/lesson06/quiz01/add-bookmark"
-			, data:{"name":name, "url":url}
-			, success:function(data){
-				alert(data); // 성공
-				if(data = "성공"){
-					location.href="/lesson06/quiz01/after-add-bookmark-view";
+			, url:"/lesson06/add-bookmark"
+			, data:{"name":name, "url":url} //json 형태
+		
+			//response - call back 함수
+			, success:function(data){ // data: JSON String => parsing(jquery ajax 함수) => dictionary
+				//alert(code);
+				if(data.code == 200){ // return : "code":200 
+					location.href="/lesson06/after-add-bookmark-view"; // get 방식
 				}
 			}	
 			, error:function(request, status, error){
+				alert("추가하는데 실패했습니다. 관리자에게 문의해주세요.");
 				alert(request);
 				alert(status);
 				alert(error);
 			}
 		}); // -- AJAX
-	}); // -ready
-});	
+	}); // -- addBtn
+});	// -ready
 	</script>
 </body>
 </html>
