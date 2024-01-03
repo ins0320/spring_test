@@ -17,7 +17,7 @@ import com.quiz.weather_history.bo.WeatherhistoryBO;
 import com.quiz.weather_history.domain.Weather;
 
 
-@RequestMapping("/weather_history")
+@RequestMapping("/weather-history")
 @Controller
 public class weather_historyController {
 	

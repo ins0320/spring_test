@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,4 +49,41 @@ public class Lesson06Controller {
 		model.addAttribute("bookmarkList", bookmarkList);
 		return "/lesson06/afterAddBookmark";
 	}
+	
+	// url 중복확인 - AJAX 요청
+	@ResponseBody
+	@PostMapping("/is-duplication-url")
+	public Map<String, Object> isDuplicationUrl(
+			@RequestParam("url") String url){
+		
+		// db select
+		boolean isDuplication = bookmarkBO.isDuplicationUrl(url);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 200);
+		result.put("is_duplication", isDuplication);
+		return result; // map => JSON string
+	}
+	
+	// 즐겨찾기 삭제 - AJAX요청
+	@ResponseBody
+	@DeleteMapping("/delete-bookmark")
+	public Map<String, Object> deleteBookmark(
+			@RequestParam("id") int id){
+		
+		// db delete
+		int rowCount = bookmarkBO.deleteBookmarkById(id);
+		
+		Map<String, Object> result = new HashMap<>();
+		
+		if(rowCount > 0) {			
+			result.put("code", 200); // 성공
+			result.put("result", "성공");
+		} else {
+			result.put("code", 500); // 성공
+			result.put("error_message", "삭제하는데 실패했습니다.");
+		}		
+		return result;
+	}
+	
 }
