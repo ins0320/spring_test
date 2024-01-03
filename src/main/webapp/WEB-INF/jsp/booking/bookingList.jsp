@@ -14,7 +14,6 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-        <link rel="stylesheet" href="style.css" type="text/css">
     </head>
 
 <%-- 내가 만든 외부 스타일시트 --%>
@@ -54,12 +53,45 @@
             		<td>${booking.headcount}</td>
             		<td>${booking.phoneNumber}</td>
             		<td>${booking.state}</td>
-            		<td><button type="button" class="btn btn-danger">삭제</button></td>
+            		<td><button type="button" class="deleteBtn btn btn-danger" data-booking-id="${booking.id}">삭제</button></td>
             	</tr>
             	</c:forEach>
-            </tbody>
-            
+            </tbody>           
             </table>
-   </div>         
+   </div>     
+<script>
+	$(document).ready(function(){
+		
+		//삭제 버튼
+		$(".deleteBtn").on('click',function(e){
+			// alert("삭제");
+			// 2) data를 이용해 값 가져오기
+			// 태그영역: data-booking-id
+			// 스크립트 영역: .data('booking-id')
+			let id = $(this).data('booking-id');
+			//alert(id);
+			$.ajax({
+				// request
+				type:"delete"
+				, url:"/booking/delete-booking"
+				, data:{"id":id}
+				
+				// response
+				, success:function(data){
+					//성공
+					if(data.code == 200){
+						location.reload(true);
+					} else if(data.code == 500)
+						// 실패
+						alert(data.error_message);
+				}
+				, error:function(reqeuest, status, error){
+					alert("삭제하는데 실패했습니다. 관리자에게 문의하세요.");
+				}
+			}); // --ajax
+		}); // -- deletebtn
+	});
+
+</script>    
 </body>
 </html>

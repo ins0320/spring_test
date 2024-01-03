@@ -55,7 +55,7 @@
 			
 			// 2) data를 이용해 값 가져오기
 			// 태그영역: data-bookmark-id
-			// 스크립트 영역: .data('data-bookmark-id')
+			// 스크립트 영역: .data('bookmark-id')
 			let id = $(this).data('bookmark-id');		
 			//alert(id);
 			
@@ -78,7 +78,7 @@
 				, error:function(request, status, error){
 					alert("삭제하는데 실패했습니다. 관리자에게 문의해주세요.");
 				}
-			})
+			});
 			
 		});
 	});

@@ -3,6 +3,30 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.quiz.booking.mapper.BookingMapper">
 
+	<insert id="insertBooking">
+		INSERT INTO
+			`booking`
+		(			
+			`name`
+			`date`
+			`day`
+			`headcount`			
+			`phoneNumber`			
+			`createdAt`
+			`updatedAt`
+		)
+		VALUES
+		(
+			#{name}
+			, #{date}
+			, #{day}
+			, #{headcount}		
+			, #{phoneNumber}			
+			, now()
+			, now()
+		)	
+	</insert>
+
 	<select id="selectBookingList">
 		SELECT
 			`id`
@@ -15,4 +39,11 @@
 		FROM
 			`booking`	
 	</select>
+	
+	<delete id="deleteBooking">
+		DELETE FROM
+			`booking`
+		WHERE
+			`id`= #{id}	
+	</delete>
 </mapper>

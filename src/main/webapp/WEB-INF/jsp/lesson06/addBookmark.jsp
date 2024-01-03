@@ -51,8 +51,7 @@
 				return;
 			}
 			
-			$.ajax({ // -- AJAX
-				
+			$.ajax({ // -- AJAX				
 				// request
 				type:"post"
 				, url:"/lesson06/add-bookmark"
