@@ -20,6 +20,9 @@ public interface BookingMapper {
 	
 	public List<Booking> selectBookingList();
 	
+	// 예약 조회하기
+	public Booking selectBookingByNamePhoneNumber(String name, String phoneNumber);
+	
 	// delete booking
 	public int deleteBooking(int id);
 }

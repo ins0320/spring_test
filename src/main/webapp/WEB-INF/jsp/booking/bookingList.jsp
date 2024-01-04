@@ -27,7 +27,7 @@
                     <ul class="nav nav-fill">
                         <li class="nav-item"><a class="nav-link" href="#">팬션소개</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">객실보기</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">예약안내</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/booking/make-booking-view">예약안내</a></li>
                         <li class="nav-item"><a class="nav-link" href="/booking/booking-list-view">예약목록</a></li>
                     </ul>
                 </nav>
@@ -52,7 +52,19 @@
             		<td>${booking.day}</td>
             		<td>${booking.headcount}</td>
             		<td>${booking.phoneNumber}</td>
-            		<td>${booking.state}</td>
+            		<td>
+            			<c:choose>
+            				<c:when test="${booking.state eq '대기중'}">
+            					<span class="text-info">${booking.state}</span>
+            				</c:when>
+            				<c:when test="${booking.state eq '확정'}">
+            					<span class="text-success">${booking.state}</span>
+            				</c:when>
+            				<c:when test="${booking.state eq '취소'}">
+            					<span class="text-danger">${booking.state}</span>
+            				</c:when>
+            			</c:choose>
+            		</td>
             		<td><button type="button" class="deleteBtn btn btn-danger" data-booking-id="${booking.id}">삭제</button></td>
             	</tr>
             	</c:forEach>

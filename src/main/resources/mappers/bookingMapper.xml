@@ -8,12 +8,13 @@
 			`booking`
 		(			
 			`name`
-			`date`
-			`day`
-			`headcount`			
-			`phoneNumber`			
-			`createdAt`
-			`updatedAt`
+			, `date`
+			, `day`
+			, `headcount`			
+			, `phoneNumber`	
+			, `state`		
+			, `createdAt`
+			, `updatedAt`
 		)
 		VALUES
 		(
@@ -21,7 +22,8 @@
 			, #{date}
 			, #{day}
 			, #{headcount}		
-			, #{phoneNumber}			
+			, #{phoneNumber}	
+			, #{state}		
 			, now()
 			, now()
 		)	
@@ -38,6 +40,22 @@
 			, `state`
 		FROM
 			`booking`	
+	</select>
+	
+	<select id="selectcheckBooking" resultType="com.quiz.booking.model.Booking">
+		SELECT
+			`name`
+			, `date`
+			, `day`
+			, `headcount`
+			, `state
+
+		FROM
+			`booking`
+		WHERE
+			`name` = #{name}
+		AND
+			`phoneNumber` = #{phoneNumber} 		
 	</select>
 	
 	<delete id="deleteBooking">

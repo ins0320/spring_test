@@ -35,12 +35,13 @@ public class BookingController {
 		return "booking/bookingList";
 	}
 
+
 	@GetMapping("/make-booking-view")
 	public String makeBookingView() {
 		return "booking/makeBooking";
 	}
 	
-	
+	// 예약하기
 	@ResponseBody
 	@PostMapping("/make-booking")
 	public Map<String, Object> makeBooking(
@@ -58,20 +59,48 @@ public class BookingController {
 		
 	};
 	
-	// booking 삭제하기
+	// 예약 삭제하기
 	@ResponseBody
 	@DeleteMapping("/delete-booking")
 	public Map<String, Object> deleteBooking(@RequestParam("id") int id) {
+		
+		// delete db
 		int rowCount = bookingBO.deleteBooking(id);
 		Map<String, Object> result = new HashMap<>();
 
 		if (rowCount > 0) {
 			// 성공
 			result.put("code", 200);
+			result.put("result", "성공");
 		} else {
 			result.put("code", 500);
+			result.put("error_message", "삭제하는데 실패했습니다.");
 		}
 		return result;
 	}
+	
+	// 예약 조회하기 화면
+	@GetMapping("/check-booking-view")
+	public String checkBookingView() {
+		return "/booking/checkBooking";
+	}
+	
+	// 예약 조회하기
+	@ResponseBody
+	@PostMapping("/check-booking")
+	public Map<String, Object> checkBooking(
+			@RequestParam("name") String name
+			, @RequestParam("phoneNumber") String phoneNumber
+			, Model model){
+		
+		Booking checkBookingList =  bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
+		 model.addAttribute("checkBookingList" , checkBookingList);
+		 
+		 Map<String, Object> result = new HashMap<>();
+		 result.put("code",200);
+		 
+		 return result;
+	}
+	
 
 }
