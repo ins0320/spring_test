@@ -6,10 +6,10 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
-import com.quiz.booking.model.Booking;
+import com.quiz.booking.domain.Booking;
 
 @Repository
-public interface BookingMapper {
+public interface BookingMapper { // data를 가져오는 것
 
 	public void insertBooking(
 			@Param("name")String name
@@ -21,7 +21,10 @@ public interface BookingMapper {
 	public List<Booking> selectBookingList();
 	
 	// 예약 조회하기
-	public Booking selectBookingByNamePhoneNumber(String name, String phoneNumber);
+	// input: 이름, 전화번호  output:List<Booking>
+	public List<Booking> selectBookingByNamePhoneNumber(
+			@Param("name") String name 
+			,@Param("phoneNumber") String phoneNumber);
 	
 	// delete booking
 	public int deleteBooking(int id);

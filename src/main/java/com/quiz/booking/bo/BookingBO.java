@@ -6,11 +6,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.quiz.booking.domain.Booking;
 import com.quiz.booking.mapper.BookingMapper;
-import com.quiz.booking.model.Booking;
 
 @Service
-public class BookingBO {
+public class BookingBO { // 가공을 하는 것은 BO
 
 	@Autowired
 	private BookingMapper bookingMapper;
@@ -24,8 +24,17 @@ public class BookingBO {
 	};
 	
 	// 예약 조회하기
+	// 없으면 null, 있으면 객체 return
 	public Booking getBookingByNamePhoneNumber(String name, String phoneNumber){
-		return bookingMapper.selectBookingByNamePhoneNumber(name, phoneNumber);
+		// 없는경우: [], 있는경우: [...]
+		List<Booking> bookingList =  bookingMapper.selectBookingByNamePhoneNumber(name, phoneNumber);
+		
+//		if (bookingList.isEmpty()) { // 비어있음
+//			return null;
+//		}
+//		bookingList.get(bookingList.size() - 1); // 마지막(최신) 리스트 값 가져옴
+		
+		return bookingList.isEmpty() ? null : bookingList.get(bookingList.size() - 1);
 	}
 	
 	public int deleteBooking(int id) {

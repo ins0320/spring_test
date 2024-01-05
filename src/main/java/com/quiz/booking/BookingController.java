@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.quiz.booking.bo.BookingBO;
-import com.quiz.booking.model.Booking;
+import com.quiz.booking.domain.Booking;
 
-@Controller
+@Controller // 요청, 응답을 정의함
 @RequestMapping("/booking")
 public class BookingController {
 
@@ -93,11 +93,19 @@ public class BookingController {
 			, @RequestParam("phoneNumber") String phoneNumber
 			, Model model){
 		
-		Booking checkBookingList =  bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
-		 model.addAttribute("checkBookingList" , checkBookingList);
-		 
-		 Map<String, Object> result = new HashMap<>();
-		 result.put("code",200);
+		// {"code":200, "result":booking 객체}
+		// {"code":200, "result":{"name":신보람,...}}
+		Map<String, Object> result = new HashMap<>();
+		
+		Booking booking =  bookingBO.getBookingByNamePhoneNumber(name, phoneNumber);
+		if(booking == null) {
+			// {"code":500, "error_message":"예약내역이 존재하지 않습니다."}
+			result.put("code", 500);
+			result.put("error_message","예약내역이 존재하지 않습니다." );
+		} else {
+			result.put("code", 200);
+			result.put("result",booking );
+		}
 		 
 		 return result;
 	}

@@ -42,14 +42,9 @@
 			`booking`	
 	</select>
 	
-	<select id="selectcheckBooking" resultType="com.quiz.booking.model.Booking">
+	<select id="selectBookingByNamePhoneNumber">
 		SELECT
-			`name`
-			, `date`
-			, `day`
-			, `headcount`
-			, `state
-
+				*
 		FROM
 			`booking`
 		WHERE
@@ -57,6 +52,8 @@
 		AND
 			`phoneNumber` = #{phoneNumber} 		
 	</select>
+	
+
 	
 	<delete id="deleteBooking">
 		DELETE FROM

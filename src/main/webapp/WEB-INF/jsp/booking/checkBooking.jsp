@@ -91,10 +91,15 @@
 				
 				// response
 				, success:function(data){
-					if(data.code == 200){
-						alert("조회 성공");
-					}else{
-						alert("조회에 실패하였습니다.");
+					// {"code":200, "result":{"name":신보람,...}}
+					if(data.code == 200){ // 예약 내역 있는 경우
+						alert("이름 : " + data.result.name
+								+ "\n날짜 : " +  data.result.date.slice(0, 10)
+								+ "\n일수 : " + data.result.day
+								+ "\n인원 : " + data.result.headcount
+								+ "\n상태 : " +data.result.state); // booking 객체 나타냄
+					}else if(data.code == 500){
+						alert(data.error_message);
 					}
 				}
 				, error:function(reqeuest, status, error){
