@@ -25,6 +25,6 @@ public class Lesson07Quiz01Controller {
 		int headcount = 3585;
 		
 		// 방금 인서트된 pk id로 바로 얻어낼 수 있다.
-				return companyBO.addStudent(name, phoneNumber, email, dreamjob);
+		return companyBO.addCompany(name, business, scale, headcount);		
 	}
 }
