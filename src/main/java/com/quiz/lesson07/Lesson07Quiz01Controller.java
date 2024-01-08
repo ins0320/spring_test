@@ -27,4 +27,39 @@ public class Lesson07Quiz01Controller {
 		// 방금 인서트된 pk id로 바로 얻어낼 수 있다.
 		return companyBO.addCompany(name, business, scale, headcount);		
 	}
+	
+	// /lesson07/quiz01/save1
+	@GetMapping("/quiz01/save1")
+	public CompanyEntity save1() {
+		
+//		회사명 : 넥손
+//		사업내용 : 컨텐츠 게임
+//		규모 : 대기업
+//		사원수 : 3585명
+		 return companyBO.addCompany("넥손", "컨텐츠 게임", "대기업", 3585);		
+		
+	}
+	
+	@GetMapping("/quiz01/save2")
+	public CompanyEntity save2() {
+		
+//		회사명 : 버블팡
+//		사업내용 : 여신 금융업
+//		규모 : 대기업
+//		사원수 : 6834명
+		
+		return companyBO.addCompany("버블팡", "여신 금융업",  "대기업", 6834);
+	}
+	
+	
+	@GetMapping("/quiz01/update1")
+	public CompanyEntity update1() {
+		return companyBO.updateCompanyByScaleHeadcount(8, "중소기업", 34);
+	}
+	
+	@GetMapping("/quiz01/delete1")
+	public String delete() {
+		companyBO.deleteCompanyById(8);
+		return "삭제 완료";
+	}
 }

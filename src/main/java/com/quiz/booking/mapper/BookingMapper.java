@@ -3,12 +3,13 @@ package com.quiz.booking.mapper;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import com.quiz.booking.domain.Booking;
 
-@Repository
+@Mapper
 public interface BookingMapper { // data를 가져오는 것
 
 	public void insertBooking(
